@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <!--Musso Andrea 09-12-2016 FMA
 Student number : 13026841
 Course : Web Programming using PHP
@@ -13,15 +12,16 @@ Tutor : Tobi Brodie  -->
     </head>
     <body>
      <header role="banner">
-
+         <?php
+            include 'include/include.php';
+          ?>
      </header>
      <main role="main">
-        <?php
 
-         ?>
+
      </main>
      <footer>
-        
+
      </footer>
     </body>
 </html>
