@@ -15,4 +15,6 @@ $path=dirname(__FILE__);
         'About'=>'#',
     );
     makeNav($header1LogOut); //This create a top Navigation for the index.php
+    banner($header2,'mainNav');
+
  ?>
