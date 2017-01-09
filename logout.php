@@ -17,8 +17,9 @@ Tutor : Tobi Brodie  -->
              <?php include 'include/header.php';?>
          </header>
          <div class="wrapper">
-             <main>
+             <main class='main' id='logOut'>
                  <h3>You log out successfully</h3>
+                 <p>Thanks for using our service</p>
                  <p>You will be redirect to the Homepage in 4 sec</p>
                  <?php header( "refresh:4;url=index.php" ); ?>
                  <p>if not redirect click <a href="index.php">here</a></p>

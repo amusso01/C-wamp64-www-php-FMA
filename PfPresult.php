@@ -2,9 +2,9 @@
 session_start();
 session_regenerate_id(true);
 require_once 'include/function.php';
+echo '<!DOCTYPE html>';
 if ((isset($_SESSION['user']))&&($_SESSION['user']=='Log in')) {
-    echo '<!DOCTYPE html>
-    <!--Musso Andrea 09-12-2016 FMA
+echo'    <!--Musso Andrea 09-12-2016 FMA
     Student number : 13026841
     Course : Web Programming using PHP
     P1 FMA
@@ -16,17 +16,17 @@ if ((isset($_SESSION['user']))&&($_SESSION['user']=='Log in')) {
 
     echo     '<body>
              <header role="banner">';
-                 include 'include/header.php'; include 'include/mainNav.php';
+                 include 'include/header.php';
     echo    '</header>
              <div class="wrapper">
-                 <main>
-                 <div class="asideNav">
+                 <main class="intranet">'; include 'include/mainNav.php';
+    echo         '<div class="asideNav">
                     <h5>Courses</h5>
-                 ';$nav=dataFile(); makeNav($nav,'intranetNav');'
-                 </div>
+                 ';$nav=dataFile(); makeNav($nav,'intranetNav');
+    echo'             </div>
                  <div class="table">';
-                     tablePopulate('PfPresult.txt');'
-                 </div>
+                     tablePopulate('PfPresult.txt');
+    echo'             </div>
                  </main>
              </div>
              <footer>';
@@ -36,6 +36,16 @@ if ((isset($_SESSION['user']))&&($_SESSION['user']=='Log in')) {
         </body>
    </html>';
 }else {
+    echo'<!--Musso Andrea 09-12-2016 FMA
+    Student number : 13026841
+    Course : Web Programming using PHP
+    P1 FMA
+    Tutor : Tobi Brodie  -->
+
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">';
+
+            include 'include/head.php';
+
     echo "<h1>You have no right to be here</h1>
     <p>You will be redirect to the Homepage in 4 sec</p>";
     header( 'refresh:4;url=index.php' );

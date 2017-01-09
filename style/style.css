@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -23,34 +25,349 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+/*====================================================*/
 
+body{
+	height: 100%;
+	min-height: 100%;
+
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;
+}
+*,*:before,*:after {
+  box-sizing: inherit;
+}
 table {
 	font-family: arial, sans-serif;
 	border-collapse: collapse;
 	width: 50%;
 }
-
 td, th {
-	border: 1px solid #dddddd;
-	text-align: left;
-	padding: 5px;
+	border: 1px solid  #4D6A81;
+	text-align: center;
+	padding: 10px;
+
 }
 th{
 	font-weight: bold;
 }
-
 tr:nth-child(even) {
 	background-color: #dddddd;
 }
-
 .red{
     color: #ff0000;
 }
 .hint{
-    font-size: 14px;
+	margin-left: 5px;
+    font-size: 13px;
+	display: none;
+	position: absolute;
+}
+
+input:focus +.hint {
+	 display: inline;
 }
 
 .confirm{
     font-weight: bold;
     font-size: 18px;
+}
+a{
+	color: #F3F7F9;
+	text-decoration: none;
+}
+a:hover,a:focus{
+	text-decoration: underline;
+	color: #ADB8C1;
+}
+#headerNav{
+	background-color: #273541;
+
+}
+#headerNav ul{
+	margin-left: 0.3em;
+	padding: 0.5em 0em 0.5em 0em;
+}
+#headerNav li{
+	display: inline-block;
+	padding-left: 2.5em;
+	list-style: none;
+	font-family: Montserrat,Arial,sans-serif;
+}
+.wrapper{
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	width: 70%;
+	margin: auto;
+	min-height: 100%;
+	position: relative;
+	background-color: #F3F7F9;
+}
+#mainNav {
+	clear: both;
+	background-color: #4D6A81;
+	margin-bottom: 0.5rem;
+}
+#mainNav ul {
+	text-align: center;
+	list-style: none;
+}
+#mainNav ul li{
+	display: inline-block;
+	padding: 0.3em;
+	padding-left: 1em;
+	padding-right: 1em;
+	font-size: 1.2em;
+}
+#mainNav ul li:hover{
+	background-color: #273541;
+}
+#mainNav ul li a:hover, #mainNav a:focus{
+	text-decoration: none;
+	color:#F3F7F9;
+}
+#logo{
+	padding-top: 1em;
+}
+#logo h2{
+	font-weight: bold;
+	font-size: 1.5em;
+}
+#imgLogo{
+	float: left;
+	padding-bottom: 0.5em;
+	max-width: 100%;
+	width: 30%;
+	margin-right: 13px;
+}
+#info{
+	width: 90%;
+	margin: auto;
+	margin-bottom:  2em;
+	margin-top: 2em;
+	padding-bottom:0.8em;
+	border-bottom: 1px dotted #4D6A81;
+}
+#info h4{
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+	font-family: Montserrat,monospace;
+}
+section{
+	height: 480px;
+	display: flex;
+	width: 90%;
+	margin: auto;
+	align-items: flex-start;;
+	justify-content: space-around;
+}
+section article{
+	font-size: 0.95em;
+	width: 40%;
+	margin-top: 2em;
+	padding: 1em;
+	border-radius:2px;
+	border: 1px solid #4D6A81;
+}
+section article h5{
+	font-size: 1.1em;
+	font-weight: bold;
+	margin-bottom: 1em;
+	font-family: Montserrat,monospace;
+}
+.main{
+	height: 670px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+#register{
+	height: 800px;
+}
+#register form{
+background-color: #363636;
+background-image:linear-gradient(45deg, hsla(0,0%,0%,.25) 25%,
+                 transparent 25%, transparent 75%, hsla(0,0%,0%,.25) 75%,
+				 hsla(0,0%,0%,.25)),
+			     linear-gradient(45deg, hsla(0,0%,0%,.25) 25%,
+				 transparent 25%, transparent 75%, hsla(0,0%,0%,.25) 75%,
+				  hsla(0,0%,0%,.25));
+background-position:0 0, 2px 2px;
+background-size:4px 4px;
+padding: 2.5em;
+border-radius: 4px;
+}
+.noPassword{
+	padding-top: 1.5em;
+	font-size: 0.9em;
+}
+h1{
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+.noPassword a{
+	color: #4D6A81;
+}
+
+.logIn{
+	margin-top: -200px;
+	margin-bottom: 3em;
+	font-weight: bold;
+}
+#logOut{
+	height: 800px;
+}
+#logOut h3{
+	font-weight: bold;
+	margin-bottom: 50px;
+}
+#logOut p{
+	margin-top: 1rem;
+}
+.main a{
+	color: #2F3235;
+}
+form div{
+	padding-top: 1em;
+}
+legend{
+	text-align: center;
+	padding-bottom: 1em;
+	font-size: 0.9em;
+	font-family: monospace;
+}
+#register{
+	background-color:#7F878E;
+	height: 820px;
+}
+#register form {
+	position: absolute;
+ 	top: 50%;
+ 	left: 50%;
+ 	transform: translate(-50%, -50%);
+ 	padding-bottom: 10em;
+}
+#register label{
+	color: #F3F7F9;
+}
+#register h2{
+	font-weight: bold;
+	text-align: center;
+	padding-top: 3em;
+}
+#register p{
+	position: absolute;
+	font-size: 13px;
+	color: #F3F7F9;
+}
+#register form fieldset label{
+display: block;
+text-align: left;
+margin-bottom: 0.5em;
+}
+#register form fieldset input{
+display: block;
+margin-bottom: 1em;
+}
+#register form fieldset input[type='submit']{
+margin-right: 0.2em;
+}
+label{
+	display: inline-block;
+	margin-right: 50px;
+	width:150px;
+	text-align: right;
+}
+input{
+	display: inline-block;
+}
+form input[type='submit']{
+	float: right;
+	margin-top: 5px;
+	border-radius: 5px;
+  	text-shadow: 1px 1px 3px #666666;
+  	font-family: Arial;
+	color: #ffffff;
+  	font-size: 14px;
+  	background: #4D6A81;
+  	padding: 6px 9px 6px 9px;
+  	text-decoration: none;
+	border: none;
+}
+form input[type='submit']:hover{
+	background: #273541;
+    text-decoration: none;
+	cursor:pointer;
+}
+.greatings{
+	width: 35%;
+	margin: auto;
+	font-weight: bold;
+	padding-top: 1.5rem;
+	margin-bottom: 2em;
+	font-family: montserrat,monospace;
+}
+.intranet{
+	height: 800px;
+}
+#intranetNav{
+	margin-left: 30px;
+	border: 1px solid #4D6A81;
+	border-radius: 2px;
+	width: 20%;
+	text-align: center;
+}
+#intranetNav a{
+	color:  #4D6A81;
+	font-family:monospace;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+h5{
+	margin-left:  30px;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+#intranetNav li{
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+#intranetNav ul{
+	list-style: none;
+}
+.table{
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+/*============footer==============*/
+footer{
+	position:absolute;
+	right: 0;
+  	bottom:0;
+  	left: 0;
+	width: 100%;
+	height: 100px;
+	padding-top: 0.6em;
+	background-color: #2F3235;
+}
+footer pre{
+	width: 20%;
+	color: #F3F7F9;
+	font-size: 0.95em;
+	float: left;
+}
+footer ul{
+	list-style: none;
+}
+#footerNav{
+	float:right;
+	width: 20%;
+}
+#footerNav a{
+	font-size: 0.8em
+
 }

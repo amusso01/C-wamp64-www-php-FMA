@@ -17,11 +17,12 @@ Tutor : Tobi Brodie  -->
      ?>
     <body>
          <header role="banner">
-             <?php include 'include/header.php'; include 'include/mainNav.php' ?>
+             <?php include 'include/header.php'; ?>
          </header>
          <div class="wrapper">
-             <main>
-                 <?php $error= getUserName(); ?>
+             <?php include 'include/mainNav.php' ;
+             $error= getUserName(); ?>
+             <main class='main'>
                  <div class="logIn">
                      <h3>Member Log-in</h3>
                  </div>
@@ -30,11 +31,11 @@ Tutor : Tobi Brodie  -->
                             <legend>Log in</legend>
                             <div>
                                 <label for="username">Username</label>
-                                <input placeholder="e.g. jonsnow01" type="text" name="username" value=""><span class="red"><?php if(isset($error['user'])){echo $error['user'];} ?></span>
+                                <input placeholder="e.g. jonsnow01" id='username' type="text" name="username" value="<?php if (isset($error['matchUser'])){echo $error['matchUser'];} ?>"><span class="red"><?php if(isset($error['user'])){echo $error['user'];} ?></span>
                             </div>
                             <div>
                                 <label for="password">Enter password</label>
-                                <input type='password' name="password"><span class="red"><?php if((!isset($error['user'])&& isset($error['password']))){echo $error['password'];} ?></span>
+                                <input type='password' id='password' name="password"><span class="red"><?php if((!isset($error['user'])&& isset($error['password']))){echo $error['password'];} ?></span>
                             </div>
                             <div>
                                 <p class="red"><?php if (isset($error['both'])) {

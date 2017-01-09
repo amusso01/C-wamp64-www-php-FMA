@@ -12,10 +12,10 @@
     //This function create the header with the main navigation bar
     function banner($linkArray,$ID){
         echo "  <div id='logo'>".PHP_EOL."
-            <h2>Department of Computer Science and Information System</h2>".PHP_EOL.
-            "            <img id='logo' src='images\Birkbeck-Logo-Colour-330x104.jpg'>".PHP_EOL;
-        makeNav($linkArray,$ID);
+                       <img id='imgLogo' src='images/Birkbeck-Logo-Colour-330x104.jpg' alt='Birkbeck logo'>".PHP_EOL.
+            "<h2>Department of Computer Science and Information System</h2>".PHP_EOL;
         echo "</div>".PHP_EOL;
+        makeNav($linkArray,$ID);
     }
     //This function return an array of the file in the dir ../../private/$fileName. Each line
     //or a message if the file is missing
@@ -32,6 +32,9 @@
         fclose($handle);
         return $content;
     }
+
+    //Function to open the file inside Data folder
+    //argument: the name of the file to open
     function intranetFile($fileName){
         $content=array();
         $handle = fopen('Data/'.$fileName, 'r');
@@ -46,13 +49,12 @@
         return $content;
     }
 
-    $self = htmlentities($_SERVER['PHP_SELF']);//path of page itself wherever I call it
+$self = htmlentities($_SERVER['PHP_SELF']);//path of page itself wherever I call it
 
 //This function is used ti check admin password on log-in against the store value
 //md5 encription is used on both password to enhance security
     function getAdminPass(){
         $error='';
-        // global $self;
         $storePass = openfile('admin.txt')[0];
         $storePass = trim($storePass);
         if (isset($_POST['submit'])) {
@@ -70,6 +72,9 @@
         return $error;
     }
 
+
+//Function to check username and password for member log-in
+//return error or on success log in bring user to intranet.php
     function getUserName(){
         $error = array();
         $validData = array();
@@ -88,6 +93,7 @@
                     $storedInfo= explode(':',$fileUsername[$i]);
                     if ($storedInfo[0]==$userName) {
                         $matchUser=true;
+                        $error['matchUser']=htmlentities($userName);
                         foreach ($storedInfo as $key => $value) {
                             $validData[]=$value;
                         }
@@ -112,14 +118,14 @@
         return $error;
     }
 
-
+//Log out from session. Clean _SESSION array, destroy session and regenerate session
     function logOut(){
         $_SESSION = array();
         session_destroy();
         session_regenerate_id(true);
     }
 
-//Check validity of name and Surname
+//Check validity of First name and Surname
     function checkName($Name){
         $error=array('not valid'=>'Field required!');
         $clean = array();
@@ -158,7 +164,7 @@ function firstKey($array){
     return $nameKey;
 }
 
-//Check the username
+//Check the username in the registration process
 function getUname($uName){
     $error=array('not valid'=>'Field required!');
     $clean = array();
@@ -216,7 +222,10 @@ function countDigits($str) {
     }
     return $noDigits;
 }
+/*=======================================================================================*/
 
+
+//This function check the password in the registartion process
 function getPassword($password){
     $safePass=trim($password);
     $clean = array();
@@ -261,7 +270,8 @@ function getPassword($password){
 }
 
 
-//This function control a new user data
+//This function control a new user data.
+//Main function that call all the other check function
     function getNewUser(){
         $errorArray=array();
         $cleanArray=array();
@@ -273,11 +283,11 @@ function getPassword($password){
             if (isset($_POST['title'])) {//Check the title value
                 $value = $_POST['title'];
                 switch ($value) {
-                    case '0'://if 0 hasError and populate errorArray 0 is the key
+                    case '0'://if 0 hasError=true and populate errorArray
                         $hasError=true;
                         $errorArray['selected']=$value;
                         break;
-                    case '1'://if other value populate cleanArray $value has key 'selected' value
+                    case '1'://if other value populate cleanArray
                         $cleanArray['title']='Dr';
                         break;
                     case '2':
@@ -324,7 +334,7 @@ function getPassword($password){
 
             $nameArray=array();
 
-            if (isset($_POST['email'])) {
+            if (isset($_POST['email'])) {//check email
                 $email = $_POST['email'];
                 $email = trim($email);
                 $safeEmail = htmlentities($email,ENT_QUOTES,'UTF-8');
@@ -341,7 +351,7 @@ function getPassword($password){
                 }
             }
 
-            if (isset($_POST['userName'])) {
+            if (isset($_POST['userName'])) {//check username
                 $userName=$_POST['userName'];
                 $userName= trim($userName);
                 $userName= strtolower($userName);
@@ -356,7 +366,7 @@ function getPassword($password){
                 }
             }
             $nameArray=array();
-            if (isset($_POST['password'])) {
+            if (isset($_POST['password'])) {//check password
                 $password=$_POST['password'];
                 $nameArray=getPassword($password);
                 $nameKey = firstKey($nameArray);
@@ -398,6 +408,16 @@ function getPassword($password){
         }
     }
 
+//write the $data pass to the function as argument in the user.txt file
+    function writeOnFile($data){
+        $fo = fopen('../../private/users.txt', 'a+') or die('users File Not found!!');
+        fwrite($fo, $data."\r\n");
+        fclose($fo);
+    }
+
+//This function is a continuation of the main function getNewUser above
+//This is call in the confirmation page
+//The function write the new users in the user.txt file uppon admin confirmation
     function confirmUser(){
         $data=array(
             $_SESSION['userName'] ,
@@ -422,12 +442,7 @@ function getPassword($password){
     }
 
 
-    function writeOnFile($data){
-            $fo = fopen('../../private/users.txt', 'a+') or die('users File Not found!!');
-            fwrite($fo, $data."\r\n");
-            fclose($fo);
-    }
-
+//This function create a table in HTML of a CSV file pass as argument
     function tablePopulate($csvFilename){
         $tableArray=intranetFile($csvFilename);//open the file and return array of it
         echo '<table>'.PHP_EOL;
@@ -450,6 +465,10 @@ function getPassword($password){
         echo '</table>'.PHP_EOL;
     }
 
+//read the files in the Data dir() and return an array of those in this form:
+// [file name]=file name.php
+//This function is to be use with the makeNav function to create a dynamic menu
+//Could be use with tablePopulate to show all the table in a single html page
     function dataFile(){
         $navArray=array();
         if (file_exists('Data')) {

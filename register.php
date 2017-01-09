@@ -1,5 +1,17 @@
 <?php session_start();session_regenerate_id(true); ?>
+
 <!DOCTYPE html>
+<?php if ((!isset($_SESSION['admin']))&&(!$_SESSION['admin']=='Log in')) {
+    echo'<!--Musso Andrea 09-12-2016 FMA
+    Student number : 13026841
+    Course : Web Programming using PHP
+    P1 FMA
+    Tutor : Tobi Brodie  -->
+
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">';
+            include 'include/head.php';
+    header( 'location:index.php' );
+} ?>
 <!-- Musso Andrea 09-12-2016 FMA
 Student number : 13026841
 Course : Web Programming using PHP
@@ -17,10 +29,11 @@ Tutor : Tobi Brodie -->
              confirmUser();?>
          </header>
          <div class="wrapper">
-             <main>
+             <main id="register">
+                 <h2>Confirm to save the user</h2>
                  <form class="registration" action="<?php echo $self ?>" method="post">
                      <fieldset>
-                         <legend>Confirm to save the user</legend>
+                         <legend>New user</legend>
                          <label for="title">Title</label>
                          <input class="confirm" type="text" name="title" disabled="disabled" value="<?php echo $_SESSION['title'] ?>">
                          <label for="fName">First name</label>
@@ -37,8 +50,8 @@ Tutor : Tobi Brodie -->
                              <input type="submit" name="confirmexit" value="Confirm and Log Out">
                          </div>
                      </fieldset>
+                     <p>Please take a note of username and password!!</p>
                  </form>
-                 <p>Please take a note of username and password!!</p>
              </main>
          </div>
          <footer>

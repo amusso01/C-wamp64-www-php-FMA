@@ -1,6 +1,6 @@
 <?php session_start();
 require_once 'include/function.php';
-if (isset($_SESSION['admin'])) {
+if (isset($_SESSION['admin'])||isset($_SESSION['user'])) {
         logOut();
 }
 ?><!DOCTYPE html>
@@ -17,21 +17,22 @@ Tutor : Tobi Brodie  -->
      ?>
     <body>
          <header role="banner">
-             <?php include 'include/header.php'; include 'include/mainNav.php' ?>
+             <?php include 'include/header.php';?>
          </header>
          <div class="wrapper">
-             <main>
-                 <?php $logError= getAdminPass() ?>
+             <?php include 'include/mainNav.php' ;
+             $logError= getAdminPass() ?>
+             <main class='main'>
                  <div class="logIn">
-                     <h3>Admin Log-in</h3>
+                     <h3>Administrator</h3>
                  </div>
                     <form action="<?php echo $self; ?>" method="post">
                         <fieldset>
                             <legend>Admin Log in</legend>
                             <div>
                                 <label for="password">Enter password</label>
-                                <input type='password' name="password"<?php if (!isset($_SESSION['status'])) {
-                                    echo "autofocus";
+                                <input type='password' id="password" name="password"<?php if (!isset($_SESSION['status'])) {
+                                    echo " autofocus";
                                 } ?> ><?php echo "$logError"; ?>
                             </div>
                             <div>
